@@ -28,14 +28,12 @@ body {
 
 /* Component */
 .menu-item {
-  background-color: crimson;
   height: 24rem;
   flex: 1 1 auto;
   display: flex;
   flex: 1 1 30%;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
   overflow: hidden;
   position: relative; }
   .menu-item:hover {
@@ -46,7 +44,7 @@ body {
     .menu-item:hover .title {
       opacity: 0.9; }
   .menu-item.large {
-    height: 380px; }
+    height: 38rem; }
   .menu-item .background-image {
     height: 100%;
     width: 100%;
@@ -80,7 +78,7 @@ body {
   flex-basis: 100%;
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1.6rem;
   justify-content: space-between; }
 
 /* Page */
