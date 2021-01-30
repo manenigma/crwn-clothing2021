@@ -17,4 +17,4 @@ const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => {
 	);
 };
 
-export default withRouter(MenuItem); // HOF function is return function where make a new modify function => give power up function
+export default withRouter(MenuItem); // HOF function is return function where make a new modify function => give power up function, Here is can be call HOC = High Order Component

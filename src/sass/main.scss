@@ -11,6 +11,8 @@
 
 /* Component */
 @import "./component/menu-item";
+@import "./component/collection-preview";
+@import "./component/collention-item";
 
 /* Layout */
 @import "./layout/directory-menu";
@@ -18,3 +20,4 @@
 
 /* Page */
 @import "./pages/homepage";
+@import "./pages/shop"
