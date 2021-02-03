@@ -1,0 +1,49 @@
+.input-group {
+	display: flex;
+	flex-direction: column;
+
+	position: relative;
+	.input__text,
+	.input__email,
+	.input__password {
+		font-size: 1.8rem;
+		padding: 10px 10px 10px 5px;
+		border: none;
+		border-bottom: 1px solid;
+		color: $color-black;
+		// margin: 25px 0;
+		background: none;
+		background-color: $color-white;
+
+		&:focus {
+			outline: none;
+			border-bottom-color: $color-grey-dark-3;
+			background-color: rgba($color-tertiary-light, .3);
+		}
+
+		&:focus ~ .label {
+			@include shrinkLabel()
+		}
+	}
+
+	.input__password {
+		letter-spacing: 0.3em;
+	}
+
+	.label {
+		color: $color-grey-dark-2;
+		font-size: 16px;
+		font-weight: normal;
+		pointer-events: none;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		left: 0.5rem;
+
+		transition: all .5s ease;
+
+		&.shrink {
+			@include shrinkLabel()
+		}
+	}
+}

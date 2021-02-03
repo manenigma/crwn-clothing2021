@@ -1,0 +1,45 @@
+.header {
+	background-color: #d9d9d9;
+	// margin-bottom: 2.5rem;
+	flex-shrink: 0;
+    flex-basis: 2.5rem;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+
+	&--logo-box {
+		// background-color: chocolate;
+		padding: 2.5rem;
+		transition: all .2s;
+
+		&__logo:hover {
+			transform: scale(1.2);
+		}
+	}
+
+	&--nav-box {
+		// background-color: chocolate;
+		// width: 30rem;
+
+		display: flex;
+		gap: 1rem;
+
+		&__option {
+			// background-color: deepskyblue;
+			padding: 1rem 1.5rem;
+			text-transform: uppercase;
+			text-decoration: none;
+			font-size: 1.6rem;
+			text-align: center;
+			cursor: pointer;
+
+			align-self: flex-end;
+			// flex: 1 0 30%;
+
+			&:hover {
+				font-weight: 700;
+			}
+		}
+	}
+}

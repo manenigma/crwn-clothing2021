@@ -1,0 +1,13 @@
+.header-box {
+	// margin-bottom: 3rem;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+
+	&__main {
+		margin-bottom: 1rem;
+	}
+
+	&__sub {
+	}
+}

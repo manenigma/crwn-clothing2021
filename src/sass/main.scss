@@ -12,12 +12,18 @@
 /* Component */
 @import "./component/menu-item";
 @import "./component/collection-preview";
-@import "./component/collention-item";
+@import "./component/collection-item";
+@import "./component/header";
+@import "./component/custom-button";
 
 /* Layout */
 @import "./layout/directory-menu";
+@import "./layout/form-group";
+@import "./layout/custom-form";
+@import "./layout/input-group";
 
 
 /* Page */
 @import "./pages/homepage";
-@import "./pages/shop"
+@import "./pages/shop";
+@import "./pages/sign-in-and-sign-up-page";
