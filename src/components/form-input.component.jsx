@@ -1,8 +1,8 @@
 import React from "react";
 
 const FormInput = (props) => {
-	// console.log(props);
-	const { type, name, label, handleChange, value } = props;
+	// console.log("FormInput", props);
+	const { label, handleChange, value, type, name, required} = props;
 	return (
 		<div className="input-group">
 			<input
@@ -10,6 +10,8 @@ const FormInput = (props) => {
 				name={name}
 				className={`input__${type}`}
 				onChange={handleChange}
+				required={required}
+				value={value}
 			/>
 			{label ? (
 				<label

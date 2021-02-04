@@ -5,7 +5,7 @@ import { auth } from "../vendors/firebase.utils";
 import { ReactComponent as Logo } from "../assets/crown.svg";
 
 const Header = ({ currentUser, history, ...otherProps }) => {
-	console.log(otherProps);
+	// console.log(otherProps);
 	return (
 		<div className="header">
 			<Link className="header--logo-box" to="/">

@@ -3,50 +3,86 @@ import React from "react";
 import FormInput from "./form-input.component";
 import CustomButton from "./custom-button.component";
 
+import { auth, createUserProfileDocument } from "../vendors/firebase.utils";
+
 class SignUp extends React.Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 
 		this.state = {
-			name: "",
+			displayName: "",
 			email: "",
 			password: "",
+			confirmPassword: "",
 		};
 	}
 
-	handleSubmit = (event) => {
+	handleSubmit = async (event) => {
+		// console.log("check S1 signup=>handleSubmit", this.state);
 		event.preventDefault();
 
-		this.setState({ email: "", password: "" });
-		console.log(`handleSubmit`);
+		const { displayName, email, password, confirmPassword } = this.state;
+
+		if (password !== confirmPassword) {
+			// console.error("Password don't match")
+			alert("Password don't match");
+			return;
+		}
+
+		auth
+			.createUserWithEmailAndPassword(email, password)
+			.then(({ user }) => {
+				// console.log("check S2");
+				user.updateProfile({ displayName: displayName }).then(
+					() => {
+						// Profile updated successfully!
+						// console.log("check S3 user", user);
+						createUserProfileDocument(user);
+					},
+					(error) => console.error("Profile updated Error!", error)
+				);
+				return user;
+			})
+			.then(() => {
+				// console.log("check S4");
+				this.setState({
+					displayName: "",
+					email: "",
+					password: "",
+					confirmPassword: "",
+				});
+			})
+			.catch((error) => console.error(error));
+
+		// console.log("check S5");
 	};
 
 	handleOnChange = (event) => {
-		const { value, name } = event.target;
+		const { name, value } = event.target;
 
 		this.setState({ [name]: value });
 		// console.log(`name: ${name}  | value: ${value}`)
 	};
 
 	render() {
+		// console.log("signup=>render=>this.state", this.state);
+		const { displayName, email, password, confirmPassword } = this.state;
 		return (
 			<div className="custom-form">
 				<div className="header-box">
-					<h2 className="header-box__main">
-						I do not have an account
-					</h2>
+					<h2 className="header-box__main">I do not have an account</h2>
 					<span className="header-box__sub">
-					Sign up with your email and password.
+						Sign up with your email and password.
 					</span>
 				</div>
 				<form onSubmit={this.handleSubmit} className="form-group">
 					<FormInput
 						type="text"
-						name="name"
+						name="displayName"
 						label="display name"
 						required
 						handleChange={this.handleOnChange}
-						value={this.state.name}
+						value={displayName}
 					/>
 					<FormInput
 						type="email"
@@ -54,23 +90,23 @@ class SignUp extends React.Component {
 						label="email"
 						required
 						handleChange={this.handleOnChange}
-						value={this.state.email}
+						value={email}
 					/>
 					<FormInput
 						type="password"
 						name="password"
-						label="password"
+						label="password (at least 6 characters)"
 						required
 						handleChange={this.handleOnChange}
-						value={this.state.password}
+						value={password}
 					/>
 					<FormInput
 						type="password"
-						name="password"
+						name="confirmPassword"
 						label="confirm password"
 						required
 						handleChange={this.handleOnChange}
-						value={this.state.password}
+						value={confirmPassword}
 					/>
 					<div className="form-group--footer">
 						<CustomButton type="submit">Sign up</CustomButton>

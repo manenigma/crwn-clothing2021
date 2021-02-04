@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import { auth } from "./vendors/firebase.utils";
+import { auth, firestore } from "./vendors/firebase.utils";
 // import './App.css';
 
 import HomePage from "./pages/homepage.page";
@@ -15,23 +15,35 @@ class App extends React.Component {
 		this.state = { currentUser: null };
 	}
 
-	unsubscribeFromAuth = null
+	unsubscribeFromAuth = null;
 
 	componentDidMount() {
-		this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-			if(user) {
-				console.log('Auth User already signed-in Firebase.')
-				this.setState({ currentUser: user })
-				
+		this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+			if (userAuth) {
+				// console.log("APP=>componentDidMount=>onAuthStateChanged", userAuth);
+				const userRef = firestore.collection("users").doc(`${userAuth.uid}`);
+				// console.log("check A1");
+
+				userRef.onSnapshot((userSnapshot) => {
+					// console.log("check A2 userSnapshot.data", userSnapshot.data());
+					this.setState({
+						currentUser: {
+							uid: userSnapshot.id,
+							...userSnapshot.data(),
+						},
+					});
+					console.log("check A3 this.state:", this.state);
+				});
 			} else {
-				console.log('Auth User was signed-out Firebase.')
+				this.setState({ currentUser: userAuth });
 			}
-			console.log('user auth object', user)
-		})
+
+			console.log("check A4 this.state:", this.state);
+		});
 	}
 
 	componentWillUnmount() {
-		this.unsubscribeFromAuth()
+		this.unsubscribeFromAuth();
 	}
 
 	render() {
