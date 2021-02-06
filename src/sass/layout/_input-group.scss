@@ -18,7 +18,7 @@
 		&:focus {
 			outline: none;
 			border-bottom-color: $color-grey-dark-3;
-			background-color: rgba($color-tertiary-light, .3);
+			background-color: $color-firebase-grey-light-3;
 
 		}
 
@@ -51,7 +51,7 @@
 		transform: translateY(-50%);
 		left: 0.5rem;
 
-		transition: all .5s ease;
+		transition: all .3s ease;
 
 		&.shrink {
 			@include shrinkLabel()
