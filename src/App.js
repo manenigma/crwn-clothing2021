@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { auth, firestore } from "./vendors/firebase.utils";
 // import './App.css';
@@ -43,18 +43,31 @@ class App extends React.Component {
 	}
 
 	render() {
+		const { currentUser } = this.props
 		return (
 			<div className="container">
 				<Header />
 				<Switch>
 					<Route exact path="/" component={HomePage} />
 					<Route path="/shop" component={ShopPage} />
-					<Route path="/signin" component={SignInAndSignUpPage} />
+					<Route
+						path="/signin"
+						render={() =>
+							currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
+						}
+					/>
 				</Switch>
 			</div>
 		);
 	}
 }
+
+const mapStateToProps = ({ user: { currentUser } }) => {
+	// state.user.currentUser
+	return {
+		currentUser,
+	};
+};
 
 const mapDispatchTopProps = (dispatch) => {
 	return {
@@ -62,4 +75,4 @@ const mapDispatchTopProps = (dispatch) => {
 	};
 };
 
-export default connect(null, mapDispatchTopProps)(App);
+export default connect(mapStateToProps, mapDispatchTopProps)(App);
