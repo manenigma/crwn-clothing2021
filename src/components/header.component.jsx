@@ -5,9 +5,13 @@ import { Link } from "react-router-dom";
 import { auth } from "../vendors/firebase.utils";
 import { ReactComponent as Logo } from "../assets/crown.svg";
 
-const Header = ({ currentUser }) => {
+import CartIcon from "./cart-icon.component";
+import CartDropdown from "./cart-dropdown.component";
+
+const Header = ({ currentUser, hidden }) => {
 	// console.log(otherProps);
 	// console.log(currentUser);
+	console.log("toggleCartDropdown", hidden);
 	return (
 		<div className="header">
 			<Link className="header--logo-box" to="/">
@@ -33,14 +37,21 @@ const Header = ({ currentUser }) => {
 					</Link>
 				)}
 
-				<div className="header--nav-box__option ">Cart</div>
+				<CartIcon className="header--nav-box__option " />
 			</div>
+			{hidden ? null : <CartDropdown />}
 		</div>
 	);
 };
 
-const mapStateToProps = (state) => {
-	return { currentUser: state.user.currentUser };
+const mapStateToProps = ({
+	user: { currentUser },
+	cartDropdown: { hidden },
+}) => {
+	return {
+		currentUser: currentUser,
+		hidden: hidden,
+	};
 };
 
 export default connect(mapStateToProps)(Header);

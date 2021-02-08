@@ -1,0 +1,28 @@
+.cart-icon {
+	// background-color: cadetblue;
+	// width: 4.5rem;
+	// height: 4.5rem;
+	padding: 1rem 1.5rem;
+	cursor: pointer;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	position: relative;
+
+	&--icon {
+		width: 2.4rem;
+		height: 2.4rem;
+
+	}
+	
+	&--item-count {
+		font-size: 1.4rem;
+		position: absolute;
+		font-weight: bold;
+		top: 15px;
+	}
+	
+}

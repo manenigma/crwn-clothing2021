@@ -1,42 +1,57 @@
 .custom-button {
-	// flex-grow: 1;
+	flex-grow: 1;
 	// flex-shrink: 0;
 	// min-width: min-content;
 	// width: 40%;
-	flex-basis: 40%;
+	// flex-basis: 40%;
 	height: 5rem;
 	letter-spacing: 0.05rem;
-	line-height: 5rem;
+	// line-height: 5rem;
 	padding: 0 1rem;
 	font-size: 1.5rem;
 	background-color: black;
 	color: $color-white;
 	text-transform: uppercase;
-	font-family: 'Open Sans Condensed';
+	font-family: "Open Sans Condensed";
 	font-weight: bolder;
-	border: none;
+	border: 1px solid transparent;
 	border-radius: 100px;
 	cursor: pointer;
-	text-align: center;
+	// text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 	&:hover {
 		background-color: $color-white;
 		color: $color-black;
 		border: 1px solid $color-black;
-	  }
-	  &:focus {
-		  outline: none;
-	  }
+	}
+	&:focus {
+		outline: none;
+	}
 
-	  &.google-sign-in {
-		  flex-grow: 1;
-		  background-color: $color-tertiary-light;
+	&.google-sign-in {
+		// flex-grow: 1;
+		background-color: $color-tertiary-light;
 
-		  &:hover {
-			  border: none;
+		&:hover {
+			border: 1px solid transparent;
 			background-color: darken($color-tertiary-light, 7%);
-		  }
-	  }
+		}
+	}
+
+	&.inverted {
+		background-color: $color-white;
+		color: $color-black;
+		border: 1px solid $color-black;
+
+		&:hover {
+			background-color: black;
+			color: $color-white;
+			border: 1px solid transparent;
+		}
+	}
 }
 
 // .btn__flexgrow {

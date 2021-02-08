@@ -1,21 +1,37 @@
 import React from "react";
 // const myImage = require(`../images/shop-img/hats/brown-cowboy.png`)
+import { connect } from "react-redux";
 
-const CollectionItem = ({ name, price, imageUrl }) => {
-	return(
-		<div className="collection-box" >
+import { addItem } from "../vendors/redux/cart/cart.action";
+
+import CustomButton from "./custom-button.component";
+
+const CollectionItem = ({ item, addItemToCart }) => {
+	const { name, price, imageUrl } = item
+	return (
+		<div className="collection-box">
 			<div className="collection-box--header">
-				<div  className="collection-box--header__image" style={{ backgroundImage: `url(${imageUrl})`}} />
-				<div className="collection-box--header__button"><span className="btn--title">Add Cart</span></div>
+				<div
+					className="collection-box--header__image"
+					style={{ backgroundImage: `url(${imageUrl})` }}
+				/>
 			</div>
 			<div className="collection-box--footer">
 				<span className="collection-box--footer__name">{name}</span>
 				<span className="collection-box--footer__price">{`$${price}`}</span>
 			</div>
+			<CustomButton inverted onClick={() => addItemToCart(item)} >Add to Cart</CustomButton>
 		</div>
-	)
+	);
+};
+
+const mapDispatchToProps = (dispatch) => {
+
+	return {
+		addItemToCart: (item) => dispatch(addItem(item))
+	}
 }
 
-export default CollectionItem
+export default connect(null, mapDispatchToProps)(CollectionItem);
 
 // require(`${imageUrl}`)
