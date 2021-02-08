@@ -19,6 +19,10 @@
 		background-color: $color-grey-light-1;
 		height: 25rem;
 		overflow-y: scroll;
+		
+		display: flex;
+		flex-direction: column;
+		gap: .5rem;
 	}
 	
 	.custom-button {

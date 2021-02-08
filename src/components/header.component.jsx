@@ -8,10 +8,10 @@ import { ReactComponent as Logo } from "../assets/crown.svg";
 import CartIcon from "./cart-icon.component";
 import CartDropdown from "./cart-dropdown.component";
 
-const Header = ({ currentUser, hidden }) => {
+const Header = ({ currentUser, cartDropdownHidden }) => {
 	// console.log(otherProps);
 	// console.log(currentUser);
-	console.log("toggleCartDropdown", hidden);
+	// console.log("toggleCartDropdown", cartDropdownHidden);
 	return (
 		<div className="header">
 			<Link className="header--logo-box" to="/">
@@ -39,18 +39,18 @@ const Header = ({ currentUser, hidden }) => {
 
 				<CartIcon className="header--nav-box__option " />
 			</div>
-			{hidden ? null : <CartDropdown />}
+			{cartDropdownHidden ? null : <CartDropdown />}
 		</div>
 	);
 };
 
 const mapStateToProps = ({
 	user: { currentUser },
-	cartDropdown: { hidden },
+	cart: { cartDropdownHidden },
 }) => {
 	return {
 		currentUser: currentUser,
-		hidden: hidden,
+		cartDropdownHidden: cartDropdownHidden,
 	};
 };
 

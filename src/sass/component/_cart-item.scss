@@ -1,0 +1,35 @@
+.cart-item {
+	width: 100%;
+
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+
+
+	&--img-box {
+		flex: 0 0 30%;
+		// width: 30%;
+		img {
+			width: 100%;
+		}
+	}
+
+	&--detail {
+		flex-grow: 1;
+		flex-shrink: 0;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		// align-items: flex-end;
+
+		
+		&__name {
+			font-size: 1.6rem;
+		}
+		
+		&__price {
+			font-size: 1.2rem;
+		}
+	}
+}
