@@ -1,0 +1,38 @@
+.checkout-page {
+	align-self: center;
+	// background-color: $color-grey-dark-2;
+	font-size: 3rem;
+
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+
+
+
+	
+	&--header {
+		width: 100%;
+		// background-color: #eee;
+		border-bottom: .1rem solid $color-grey-dark-2;
+
+		display: grid;
+		grid-template-columns: 18rem repeat(4, 1fr);
+		grid-template-rows: 10rem;
+		grid-auto-rows: min-content;
+
+		justify-items: center;
+		align-items: center;
+		gap: 1rem;
+
+	}
+
+	
+	
+	&--total-price {
+		align-self: flex-end;
+	}
+	
+	&--footer {
+		align-self: center;
+	}
+}

@@ -1,0 +1,36 @@
+.checkout-item {
+	width: 100%;
+	// background-color: $color-tertiary-dark;
+	font-size: 2rem;
+	border-bottom: .1rem solid $color-grey-dark-2;
+
+	display: grid;
+	grid-template-columns: 18rem repeat(4, 1fr);
+	gap: 1rem;
+	grid-template-rows: 24.5rem;
+	grid-auto-rows: 24.5rem;
+	justify-items: center;
+	align-items: center;
+
+	&--image-box {
+		width: 90%;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	&--quantity {
+
+		display: flex;
+		gap: 1rem;
+
+		&__arrow {
+			cursor: pointer;
+		}
+	}
+
+	&--button__remove {
+		cursor: pointer;
+	}
+}

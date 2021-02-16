@@ -15,6 +15,10 @@
 	flex-direction: column;
 	align-items: stretch;
 
+	.flex-start {
+		justify-content: flex-start;
+	}
+
 	&--items {
 		background-color: $color-grey-light-1;
 		height: 25rem;
@@ -22,7 +26,14 @@
 		
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
 		gap: .5rem;
+
+		&__detail {
+			align-self: center;
+
+			font-size: 2rem;
+		}
 	}
 	
 	.custom-button {
