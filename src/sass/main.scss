@@ -19,6 +19,7 @@
 @import "./component/cart-dropdown";
 @import "./component/cart-item";
 @import "./component/checkout-item";
+@import "./component/collections-overview";
 
 /* Layout */
 @import "./layout/directory-menu";
@@ -31,4 +32,5 @@
 @import "./pages/homepage";
 @import "./pages/shop";
 @import "./pages/sign-in-and-sign-up-page";
-@import "./pages//checkout";
+@import "./pages/checkout";
+@import "./pages/collection"

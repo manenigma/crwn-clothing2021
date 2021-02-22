@@ -7,6 +7,7 @@ import { addItem } from "../vendors/redux/cart/cart.action";
 import CustomButton from "./custom-button.component";
 
 const CollectionItem = ({ item, addItemToCart }) => {
+	// console.log("item", item);
 	const { name, price, imageUrl } = item
 	return (
 		<div className="collection-box">

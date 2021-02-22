@@ -6,7 +6,7 @@ const CollectionPreview = ({ title, items }) => {
 	return (
 		<div className="collection">
 			<h1 className="collection--title">{title.toUpperCase()}</h1>
-			<div className="collection--preview">
+			<div className="collection--items">
 				{items
 					.filter((item, i) => i < 4)
 					.map((item) => {

@@ -24,7 +24,7 @@ const Header = ({ currentUser, cartDropdownHidden }) => {
 				<Link className="header--nav-box__option" to="/shop">
 					SHOP
 				</Link>
-				<Link className="header--nav-box__option" to="/shop">
+				<Link className="header--nav-box__option" to="/contact">
 					CONTACT
 				</Link>
 				{currentUser ? (
