@@ -1,0 +1,28 @@
+.spinner-overlay {
+	height: 60vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.spinner-container {
+		display: inline-block;
+		width: 60px;
+		height: 60px;
+		border: .4rem solid $color-grey-light-2;
+		border-radius: 50%;
+		border-top-color: $color-tertiary-light;
+		animation: spin .5s ease-in-out infinite;
+		-webkit-animation: spin .5s ease-in-out infinite;
+		@keyframes spin {
+		  to {
+			-webkit-transform: rotate(360deg);
+		  }
+		}
+		@-webkit-keyframes spin {
+		  to {
+			-webkit-transform: rotate(360deg);
+		  }
+		}
+	}
+}

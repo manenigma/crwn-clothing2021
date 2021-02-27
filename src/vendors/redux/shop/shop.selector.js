@@ -12,14 +12,14 @@ export const selectShopCollections = createSelector([selectShop], (shop) => {
 export const selectShopCollectionsOverview = createSelector(
 	[selectShopCollections],
 	(collections) => {
-		return Object.keys(collections).map((key) => {
-			return collections[key];
-		});
+		return collections
+			? Object.keys(collections).map((key) => collections[key])
+			: [];
 	}
 );
 
-export const selectCollection = memoize((collectionUrlParam) => {
-	return createSelector([selectShopCollections], (collections) => {
-		return collections[collectionUrlParam];
-	});
-});
+export const selectCollection = memoize((collectionUrlParam) =>
+	createSelector([selectShopCollections], (collections) =>
+		collections ? collections[collectionUrlParam] : null
+	)
+);

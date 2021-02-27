@@ -8,7 +8,7 @@ import CustomButton from "./custom-button.component";
 
 const CollectionItem = ({ item, addItemToCart }) => {
 	// console.log("item", item);
-	const { name, price, imageUrl } = item
+	const { name, price, imageUrl } = item;
 	return (
 		<div className="collection-box">
 			<div className="collection-box--header">
@@ -16,22 +16,25 @@ const CollectionItem = ({ item, addItemToCart }) => {
 					className="collection-box--header__image"
 					style={{ backgroundImage: `url(${imageUrl})` }}
 				/>
+				<div className="collection-box--header__btn">
+					<CustomButton inverted onClick={() => addItemToCart(item)}>
+						Add to Cart
+					</CustomButton>
+				</div>
 			</div>
 			<div className="collection-box--footer">
 				<span className="collection-box--footer__name">{name}</span>
 				<span className="collection-box--footer__price">{`$${price}`}</span>
 			</div>
-			<CustomButton inverted onClick={() => addItemToCart(item)} >Add to Cart</CustomButton>
 		</div>
 	);
 };
 
 const mapDispatchToProps = (dispatch) => {
-
 	return {
-		addItemToCart: (item) => dispatch(addItem(item))
-	}
-}
+		addItemToCart: (item) => dispatch(addItem(item)),
+	};
+};
 
 export default connect(null, mapDispatchToProps)(CollectionItem);
 

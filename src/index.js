@@ -7,7 +7,6 @@ import { store, persistor } from "./vendors/redux/store";
 
 import { PersistGate } from "redux-persist/integration/react";
 
-import "./sass/main.scss";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
