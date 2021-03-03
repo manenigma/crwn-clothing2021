@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { auth, firestore } from "./vendors/firebase.utils";
+// import { auth, firestore } from "./vendors/firebase.utils";
 import { createStructuredSelector } from "reselect";
 // import './App.css';
 
@@ -11,7 +11,7 @@ import CheckOutPage from "./pages/checkout.page";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up-page";
 import Header from "./components/header.component";
 
-import { setCurrentUser } from "./vendors/redux/user/user.action";
+import { checkUserSession } from "./vendors/redux/user/user.action";
 
 import { selectCurrentUser } from "./vendors/redux/user/user.selector";
 
@@ -20,9 +20,11 @@ import { ThemeProvider } from "styled-components";
 import theme from "./styled/abstracts/variables";
 
 class App extends React.Component {
-	unsubscribeFromAuth = null;
+	// unsubscribeFromAuth = null;
 
 	componentDidMount() {
+		const { checkUserSession } = this.props;
+		checkUserSession()
 		// const { collections } = this.props;
 		// console.log(collections);
 		// addCollectionAndDocuments(
@@ -30,14 +32,15 @@ class App extends React.Component {
 		// 	collections.map(({ title, items }) => ({ title, items }))
 		// );
 
-		const { setCurrentUser } = this.props;
-		this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+		// const { setCurrentUser } = this.props;
+
+		/* this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
 			if (userAuth) {
 				// console.log("APP=>componentDidMount=>onAuthStateChanged", userAuth);
 				const userRef = firestore.collection("users").doc(`${userAuth.uid}`);
 				// console.log("check A1");
 
-				userRef.onSnapshot(async (userSnapshot) => {
+				userRef.onSnapshot(async(userSnapshot) => {
 					// console.log("check A2 userSnapshot.data", userSnapshot.data());
 					setCurrentUser({
 						uid: userSnapshot.id,
@@ -50,7 +53,7 @@ class App extends React.Component {
 			}
 
 			// console.log("check A4 this.state:", this.state);
-		});
+		}); */
 	}
 
 	componentWillUnmount() {
@@ -86,7 +89,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchTopProps = (dispatch) => {
 	return {
-		setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+		checkUserSession: () => dispatch(checkUserSession()),
 	};
 };
 

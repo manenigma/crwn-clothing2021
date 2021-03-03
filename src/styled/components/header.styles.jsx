@@ -23,9 +23,10 @@ export const OptionContainerStyles = css`
 
 export const HeaderContainer = styled.div`
 	background-color: #d9d9d9;
-	width: minmax(max-content, 100%);
+	width: 100%;
 	flex-shrink: 0;
 	flex-basis: 2.5rem;
+	border-radius: 0 0 2rem 2rem;
 
 	display: flex;
 	justify-content: space-between;

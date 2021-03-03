@@ -10,7 +10,7 @@ import CustomButton from "./custom-button.component";
 import CartItem from "./cart-item.component";
 
 const CartDropdown = ({ cartItems, ...otherProps }) => {
-	console.log("otherProps", otherProps)
+	// console.log("otherProps", otherProps)
 
 	const { history, dispatch } = otherProps
 	return (

@@ -19,8 +19,8 @@ export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
 // Authenticate Using Google Sign-In with JavaScript
-const GoogleProvider = new firebase.auth.GoogleAuthProvider();
-GoogleProvider.setCustomParameters({
+export const googleProvider = new firebase.auth.GoogleAuthProvider();
+googleProvider.setCustomParameters({
 	prompt: "select_account",
 });
 
@@ -32,7 +32,7 @@ export const createUserProfileDocument = async (userAuth) => {
 	const { displayName, email, photoURL } = userAuth;
 	// console.log("check F2 userAuth.displayName", userAuth.displayName);
 	const userRef = firestore.collection("users").doc(`${userAuth.uid}`);
-	userRef.get().then((userSnapshot) => {
+	userRef.get().then( async (userSnapshot) => {
 		// console.log("check F3 !userSnapshot.exists", !userSnapshot.exists);
 		if (!userSnapshot.exists) {
 			// const createdAt = new Date();
@@ -56,7 +56,7 @@ export const createUserProfileDocument = async (userAuth) => {
 
 export const googleSignInPopup = () => {
 	auth
-		.signInWithPopup(GoogleProvider)
+		.signInWithPopup(googleProvider)
 		.then(({ user }) => {
 			// const user = result.user;
 			createUserProfileDocument(user);
@@ -102,5 +102,15 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 		return accumulator;
 	}, {});
 };
+
+export const getCurrentUser = () => {
+	return new Promise((resolve, reject) => {
+		const unsubscribe = auth.onAuthStateChanged( async (userAuth) => {
+			unsubscribe();
+			resolve(userAuth)
+		}, reject)
+	})
+}
+
 
 export default firebase;

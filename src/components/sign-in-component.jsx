@@ -1,11 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 
 // Component
 import FormInput from "./form-input.component";
 import CustomButton from "./custom-button.component";
 
 // Vendors
-import { auth, googleSignInPopup } from "../vendors/firebase.utils";
+// import { auth } from "../vendors/firebase.utils";
+import { googleSignInStart, emailSignInStart } from "../vendors/redux/user/user.action";
 
 class SignIn extends React.Component {
 	constructor(props) {
@@ -19,21 +21,22 @@ class SignIn extends React.Component {
 
 	handleSubmit = async (event) => {
 		event.preventDefault();
-
+		const { emailSignInStart } = this.props
 		const { email, password } = this.state;
-		auth
+
+		emailSignInStart(email, password)
+		/* auth
 			.signInWithEmailAndPassword(email, password)
 			.then(({ user }) => {
 				// Signed in
 				this.setState({ email: "", password: "" });
-				console.log(`Sign in successfully with user ${user.displayName}`)
+				console.log(`Sign in successfully with user ${user.displayName}`);
 				// ...
 			})
 			.catch((error) => {
-				console.error("Sign inError!", error.message)
-			});
+				console.error("Sign inError!", error.message);
+			}); */
 
-		
 		// console.log(`handleSubmit`);
 	};
 
@@ -45,6 +48,7 @@ class SignIn extends React.Component {
 	};
 
 	render() {
+		const { googleSignInStart } = this.props
 		return (
 			<div className="custom-form">
 				<div className="header-box">
@@ -75,7 +79,7 @@ class SignIn extends React.Component {
 						<CustomButton
 							type="button"
 							isGoogleSignIn
-							onClick={googleSignInPopup}
+							onClick={googleSignInStart}
 						>
 							Sign in with google
 						</CustomButton>
@@ -86,4 +90,11 @@ class SignIn extends React.Component {
 	}
 }
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		googleSignInStart: () => dispatch(googleSignInStart()),
+		emailSignInStart: (email, password) => dispatch(emailSignInStart({ email, password }))
+	};
+};
+
+export default connect(null, mapDispatchToProps)(SignIn);

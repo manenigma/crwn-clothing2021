@@ -53,6 +53,15 @@
 
 			position: absolute;
 			bottom: 6rem;
+			transition: all .2 ;
+
+			&:hover {
+				transform: translateY(-.5rem);
+			}
+
+			&:active {
+				transform: translateY(-.5px);
+			}
 		}
 	}
 
