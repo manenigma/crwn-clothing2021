@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import FormInput from "./form-input.component";
@@ -7,24 +7,19 @@ import CustomButton from "./custom-button.component";
 // import { auth, createUserProfileDocument } from "../vendors/firebase.utils";
 import { signUpStart } from "../vendors/redux/user/user.action";
 
-class SignUp extends React.Component {
-	constructor() {
-		super();
+const SignUp = ({ signUpStart }) => {
+	const [userCredentials, setUserCredentials] = useState({
+		displayName: "",
+		email: "",
+		password: "",
+		confirmPassword: "",
+	});
 
-		this.state = {
-			displayName: "",
-			email: "",
-			password: "",
-			confirmPassword: "",
-		};
-	}
+	const { displayName, email, password, confirmPassword } = userCredentials;
 
-	handleSubmit = async (event) => {
-		// console.log("check S1 signup=>handleSubmit", this.state);
+	const handleSubmit = async (event) => {
+		// console.log("check S1 signup=>handleSubmit", state);
 		event.preventDefault();
-
-		const { signUpStart } = this.props;
-		const { displayName, email, password, confirmPassword } = this.state;
 
 		if (password !== confirmPassword) {
 			// console.error("Password don't match")
@@ -50,7 +45,7 @@ class SignUp extends React.Component {
 			})
 			.then(() => {
 				// console.log("check S4");
-				this.setState({
+				setState({
 					displayName: "",
 					email: "",
 					password: "",
@@ -62,65 +57,61 @@ class SignUp extends React.Component {
 		// console.log("check S5"); */
 	};
 
-	handleOnChange = (event) => {
+	const handleOnChange = (event) => {
 		const { name, value } = event.target;
 
-		this.setState({ [name]: value });
+		setUserCredentials({ ...userCredentials, [name]: value });
 		// console.log(`name: ${name}  | value: ${value}`)
 	};
 
-	render() {
-		// console.log("signup=>render=>this.state", this.state);
-		const { displayName, email, password, confirmPassword } = this.state;
-		return (
-			<div className="custom-form">
-				<div className="header-box">
-					<h2 className="header-box__main">I do not have an account</h2>
-					<span className="header-box__sub">
-						Sign up with your email and password.
-					</span>
-				</div>
-				<form onSubmit={this.handleSubmit} className="form-group">
-					<FormInput
-						type="text"
-						name="displayName"
-						label="display name"
-						required
-						handleChange={this.handleOnChange}
-						value={displayName}
-					/>
-					<FormInput
-						type="email"
-						name="email"
-						label="email"
-						required
-						handleChange={this.handleOnChange}
-						value={email}
-					/>
-					<FormInput
-						type="password"
-						name="password"
-						label="password (at least 6 characters)"
-						required
-						handleChange={this.handleOnChange}
-						value={password}
-					/>
-					<FormInput
-						type="password"
-						name="confirmPassword"
-						label="confirm password"
-						required
-						handleChange={this.handleOnChange}
-						value={confirmPassword}
-					/>
-					<div className="form-group--footer">
-						<CustomButton type="submit">Sign up</CustomButton>
-					</div>
-				</form>
+	return (
+		<div className="custom-form">
+			<div className="header-box">
+				<h2 className="header-box__main">I do not have an account</h2>
+				<span className="header-box__sub">
+					Sign up with your email and password.
+				</span>
 			</div>
-		);
-	}
-}
+			<form onSubmit={handleSubmit} className="form-group">
+				<FormInput
+					type="text"
+					name="displayName"
+					label="display name"
+					required
+					handleChange={handleOnChange}
+					value={displayName}
+				/>
+				<FormInput
+					type="email"
+					name="email"
+					label="email"
+					required
+					handleChange={handleOnChange}
+					value={email}
+				/>
+				<FormInput
+					type="password"
+					name="password"
+					label="password (at least 6 characters)"
+					required
+					handleChange={handleOnChange}
+					value={password}
+				/>
+				<FormInput
+					type="password"
+					name="confirmPassword"
+					label="confirm password"
+					required
+					handleChange={handleOnChange}
+					value={confirmPassword}
+				/>
+				<div className="form-group--footer">
+					<CustomButton type="submit">Sign up</CustomButton>
+				</div>
+			</form>
+		</div>
+	);
+};
 
 const mapDispatchToProps = (dispatch) => ({
 	signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials)),
